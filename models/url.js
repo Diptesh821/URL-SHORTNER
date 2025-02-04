@@ -18,6 +18,10 @@ const userSchema=mongoose.Schema({
     createdBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"users"
+    },
+    createdBy_email:{
+        type:String,
+        ref:"users"
     }
 })
 const URL=mongoose.model("url",userSchema);
