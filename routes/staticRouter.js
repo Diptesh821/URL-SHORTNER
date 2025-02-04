@@ -26,7 +26,7 @@ router.get("/",restrictTo(["NORMAL","ADMIN"]),async(req,res)=>{
     return res.render("home",{
 
         urls:allUsers,
-        createdBy:req.user.role,
+        createdBy:req.user,
     })
 })
 router.get("/signup",(req,res)=>{
