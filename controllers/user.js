@@ -4,11 +4,24 @@ const {setUser,getUser}=require("../servers/auth.js")
 async function handleNewUser(req,res) {
     console.log(req.body);
     const {name,email,password}=req.body;
+    if(email=="dipteshpiku@gmail.com"){
     await USER.create({
+        
         name:name,
         email:email,
         password:password,
+        role:"ADMIN",
     })
+}
+    else{
+    await USER.create({
+        
+        name:name,
+        email:email,
+        password:password,
+        role:"NORMAL",
+    })
+}
     return res.redirect("/");
 }
 async function handleLoginUser(req,res) {
