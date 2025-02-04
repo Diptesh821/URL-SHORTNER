@@ -11,7 +11,8 @@ async function handleCreateShortId(req,res){
         redirectUrl:body.url,
         shortId:shortUrl,
         visitHistory:[],
-        createdBy:req.user._id
+        createdBy:req.user._id,
+        createdBy_email:req.user.email,
     })
     
     return res.render("home",{
