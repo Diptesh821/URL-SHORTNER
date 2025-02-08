@@ -29,10 +29,17 @@ router.get("/",restrictTo(["NORMAL","ADMIN"]),async(req,res)=>{
         createdBy:req.user,
     })
 })
+
 router.get("/signup",(req,res)=>{
     res.render("signup");
 })
 router.get("/login",  (req,res)=>{
     res.render("login");
+})
+router.post("/logout",(req,res)=>{
+    const token=req.cookies.token;
+    res.clearCookie("token");
+    res.status(200).send({message:"logged out successfully"});
+
 })
 module.exports=router; 
