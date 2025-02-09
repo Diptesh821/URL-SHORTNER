@@ -6,36 +6,37 @@ const {restrictTo}=require("../middlewares/auth")
 
 router.post("/admin/urls",restrictTo(["ADMIN"]),async(req,res)=>{
     
-    const allUsers=await URL.find({});
+    const allUrls=await URL.find({});
    const {email,password,passkey}=req.body;
    const user=await USER.findOne({
     email,
     password
 });
 
+
 if(!user){
     
-    return res.render("notadmin"); 
+    return res.render("not_admin"); 
 }
 if(passkey==user.passkey){
-    return res.render("home_admin",{
+    return res.render("allusers_info",{
 
-        urls:allUsers,
+        urls:allUrls,
         createdBy:req.user,
 
     })}
     else{
-        res.render("restrict");
+        res.render("invalid_passkey");
     }
 })
 
 router.get("/admin",restrictTo(["ADMIN"]),async(req,res)=>{
     
    
-    const allUsers=await URL.find({});
-    return res.render("admin",{
+    const allUrls=await URL.find({});
+    return res.render("admin_verify",{
 
-        urls:allUsers,
+        urls:allUrls,
         createdBy:req.user,
 
     })
@@ -45,20 +46,20 @@ router.get("/admin",restrictTo(["ADMIN"]),async(req,res)=>{
 
 router.get("/",restrictTo(["NORMAL","ADMIN"]),async(req,res)=>{
     
-    const allUsers=await URL.find({createdBy:req.user._id});
+    const allUrls=await URL.find({createdBy:req.user._id});
     console.log(req.user);
-    console.log(allUsers);
+    console.log(allUrls);
   console.log(req.user.role);
   if(req.user.role=="NORMAL"){
-    return res.render("home",{
+    return res.render("normal_homepage",{
 
-        urls:allUsers,
+        urls:allUrls,
         createdBy:req.user,
     })}
     else{
-        return res.render("admin_home_page",{
+        return res.render("admin_homepage",{
 
-            urls:allUsers,
+            urls:allUrls,
             createdBy:req.user,
         })
 
