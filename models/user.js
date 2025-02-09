@@ -18,6 +18,11 @@ const userSchema=mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    passkey:{
+        type:String,
+        required:true,
+        unique:true,
     }
 
 },{

@@ -1,5 +1,4 @@
 document.getElementById("signout-btn").addEventListener("click", async()=>{
-    console.log("piku");
     try{
         const response=await fetch("/logout",{
             method:"POST",

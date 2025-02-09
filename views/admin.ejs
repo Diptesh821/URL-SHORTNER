@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td,th,tr{
+            border: 2px solid blue;
+            
+        }
+        table{
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL SHORTNER</h1>
+    <div>
+        <form method="POST" action="/admin/urls">
+            <label for="">Enter email: </label>
+            <input type="text" name="email" placeholder="https://example.ex" required>
+            <label for="">Enter Password</label>
+            <input type="password" name="password" required>
+            <label for="">Enter passkey:</label>
+            <input type="password" name="passkey">
+            <button type="submit">Generate</button>
+        </form>
+   
+
+ 
+</body>
+</html>
