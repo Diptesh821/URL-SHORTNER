@@ -34,13 +34,17 @@ async function handleLoginUser(req,res) {
     });
     console.log(user);
     if(!user){
+        return res.send(`<script>
+            alert('Invalid email or Password!');
+            window.location.href='/login' </script>`);
+           
         
-        return res.redirect("/signup"); 
+        
     }
     const token=setUser(user);
     res.cookie("token",token);
     return res.redirect("/");
-    // return res.json({token});
+    
     
     
 }
