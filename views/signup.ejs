@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignUp</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <form action="/user" method="post">
-        <label for="">Enter Name:</label>
-        <input type="text" name="name" id="">
-        <label for="">Enter EMAIL:</label>
-        <input type="text" name="email" id="">
-        <label for="">Enter PASSWORD:</label>
-        <input type="text" name="password" id="">
-
-        <button type="submit">SIGNUP</button>
-    </form>
-    
+    <div class="login-container">
+        <div class="login-box">
+            <h2>SIGNUP</h2>
+            <form action="/user/login" method="POST">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div class="extra-options">
+                    <a href="/forgot-password">Forgot Password?</a>
+                    <a href="/signup">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
