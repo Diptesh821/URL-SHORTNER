@@ -20,7 +20,7 @@ async function handleCreateShortId(req,res){
         
 
     })
-    return res.json({status:"succcess",shortid:result.shortId});
+    
 }
 async function handleGetUrl(req,res){
     const shortId=req.params.shortId;

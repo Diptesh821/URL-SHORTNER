@@ -45,12 +45,8 @@
                     <td><%=url.redirectUrl %></td> 
                     <td><a href="http://localhost:8001/url/<%=url.shortId %>">http://localhost:8001/url/<%=url.shortId %></a></td>
                     <td><%=url.visitHistory.length %></td>
-                   <%if(locals.createdBy._id == url.createdBy){%>  <td><%=locals.createdBy.role%></td><%}
-                    else{%><td>
-                        NORMAL</td>
-                   <% }
+                    <td><%=createdBy.role%></td>
                     
-                    %>
                     
                 </tr>
                  
