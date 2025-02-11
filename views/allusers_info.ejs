@@ -1,65 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-    <style>
-        td,th,tr{
-            border: 2px solid blue;
-            
-        }
-        table{
-            margin: 30px;
-        }
-    </style>
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/css/style1.css">
 </head>
-<body>
-    <h1>URL SHORTNER</h1>
-    <% if (locals.id) {%>
-       <p>URL Generated: http://localhost:8001/url/<%=id%></p>
 
-        
-    <% } %>
-    <div>
-        <form method="POST" action="/url">
-            <label for="">Enter Your URL Here: </label>
-            <input type="text" name="url" placeholder="https://example.ex">
-            <button type="submit">Generate</button>
-        </form>
-    
-    <% if (locals.urls) { %>
-    <table>
-        <thead>
-            <th>sl No</th>
-            <th>redirectUrl</th>
-            <th>shortId</th>
-            <th>Total Clicks</th>
-            <th>CreatedBy</th>
-            <th>CreatedBy(email)</th>
-        </thead>
-        <tbody>
-            <% urls.forEach((url,index) => {%>
-                <tr>
-                    <td><%=index+1 %></td>
-                    <td><%=url.redirectUrl %></td> 
-                    <td><a href="http://localhost:8001/url/<%=url.shortId %>">http://localhost:8001/url/<%=url.shortId %></a></td>
-                    <td><%=url.visitHistory.length %></td>
-                   <%if(locals.createdBy._id == url.createdBy){%>  <td><%=locals.createdBy.role%></td><%}
-                    else{%><td>
-                        NORMAL</td>
-                   <% }
-                    
-                    %>
-                    <td><%=url.createdBy_email %></td>
-                </tr>
-                 
-            <% }); %>
-        </tbody>
-    </table>
-    <hr>
-   
-<%  }%>
+<body>
+    <div id="container">
+        <h1>URL SHORTENER</h1>
+
+        <div id="generate-box">
+            <% if (locals.id) { %>
+               URL Generated:  <a href="http://localhost:8001/url/<%= id %>">
+                    http://localhost:8001/url/<%= id %>
+                </a>
+            <% } %>
+        </div>
+
+        <div class="form">
+            <form method="POST" action="/url">
+                <div id="input-box">
+                    <label for="url-input">Enter Your URL Here:</label>
+                    <input type="text" name="url" id="url-input" placeholder="https://example.ex">
+                    <button type="submit" id="btn">Generate</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="table-box">
+            <% if (locals.urls) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sl No</th>
+                            <th>Redirect URL</th>
+                            <th>Short ID</th>
+                            <th>Total Clicks</th>
+                            <th>Created By</th>
+                            <th>Created By(email)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% urls.forEach((url, index) => { %>
+                            <tr>
+                                <td><%= index + 1 %></td>
+                                <td><%= url.redirectUrl %></td>
+                                <td>
+                                    <a href="http://localhost:8001/url/<%= url.shortId %>">
+                                        http://localhost:8001/url/<%= url.shortId %>
+                                    </a>
+                                </td>
+                                <td><%= url.visitHistory.length %></td>
+                                <%if(locals.createdBy._id == url.createdBy){%>  <td><%=locals.createdBy.role%></td><%}
+                                else{%><td>
+                                    NORMAL</td>
+                               <% }
+                                
+                                %>
+                                <td><%=url.createdBy_email %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+
+       
+    </div>
+    <script src="/js/script.js"></script>
 </body>
+
 </html>

@@ -14,6 +14,7 @@ const userSchema=mongoose.Schema({
     role:{
         type:String,
         required:true,
+        default:"NORMAL",
     },
     password:{
         type:String,
@@ -21,8 +22,11 @@ const userSchema=mongoose.Schema({
     },
     passkey:{
         type:String,
-        required:true,
-        unique:true,
+        required:function(){
+            return this.role==="ADMIN";
+        },
+        
+       
     }
 
 },{
