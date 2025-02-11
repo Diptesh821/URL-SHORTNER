@@ -14,12 +14,20 @@ async function handleCreateShortId(req,res){
         createdBy:req.user._id,
         createdBy_email:req.user.email,
     })
+    if(req.user.role=="ADMIN"){
     
-    return res.render("home",{
+    return res.render("admin_homepage",{
         id:shortUrl,
         
 
-    })
+    })}
+    else{
+        return res.render("normal_homepage",{
+            id:shortUrl,
+            
+    
+        })
+    }
     
 }
 async function handleGetUrl(req,res){

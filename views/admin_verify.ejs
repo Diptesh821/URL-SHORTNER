@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        td,th,tr{
-            border: 2px solid blue;
-            
-        }
-        table{
-            margin: 30px;
-        }
-    </style>
-</head>
-<body>
-    <h1>URL SHORTNER</h1>
-    <div>
-        <form method="POST" action="/admin/urls">
-            <label for="">Enter email: </label>
-            <input type="text" name="email" placeholder="https://example.ex" required>
-            <label for="">Enter Password</label>
-            <input type="password" name="password" required>
-            <label for="">Enter passkey:</label>
-            <input type="password" name="passkey">
-            <button type="submit">Generate</button>
-        </form>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>verification page</title>
+            <link rel="stylesheet" href="/css/style.css">
+        </head>
+        <body>
+            <div class="login-container">
+                <div class="login-box">
+                    <h2>Admin Verification</h2>
+                    <form action="/admin/urls" method="POST">
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="passkey" placeholder="Enter your passkey" required>
+                        </div>
+                        <button type="submit" class="login-btn">Submit</button>
+                        
+                    </form>
+                </div>
+            </div>
+        </body>
+        </html>
+        
    
 
  
