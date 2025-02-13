@@ -65,6 +65,19 @@ router.get("/",restrictTo(["NORMAL","ADMIN"]),async(req,res)=>{
 
     }
 })
+router.get("/dashboard",restrictTo(["NORMAL","ADMIN"]),(req,res)=>{
+    if(req.user.role=='ADMIN'){
+        res.render("admin_homepage",{
+            id:req.session.shortid,
+        })
+    }
+    else{
+        res.render("normal_homepage",{
+            id:req.session.shortid,
+        })
+    }
+
+})
 
 router.get("/signup",(req,res)=>{
     res.render("signup");

@@ -14,22 +14,16 @@ async function handleCreateShortId(req,res){
         createdBy:req.user._id,
         createdBy_email:req.user.email,
     })
-    if(req.user.role=="ADMIN"){
     
-    return res.render("admin_homepage",{
-        id:shortUrl,
-        
+    
+     req.session.shortid=shortUrl;
+     console.log(shortUrl);
+     console.log(req.session.shortid);
+      
+    return res.redirect("/dashboard")}
+   
+    
 
-    })}
-    else{
-        return res.render("normal_homepage",{
-            id:shortUrl,
-            
-    
-        })
-    }
-    
-}
 async function handleGetUrl(req,res){
     const shortId=req.params.shortId;
     const entry=await URL.findOneAndUpdate({
@@ -56,5 +50,5 @@ async function  getTotalClicks(req,res) {
 module.exports={
     handleCreateShortId,
     handleGetUrl,
-    getTotalClicks
+    getTotalClicks,
 }
