@@ -1,8 +1,8 @@
 const express=require("express"); 
 const router=express.Router();
-const URL=require("../models/url")
+const URL=require("../models/url.js")
 const USER=require("../models/user.js");
-const {restrictTo}=require("../middlewares/auth")
+const {restrictTo}=require("../middlewares/auth.js")
 
 router.post("/admin/urls",restrictTo(["ADMIN"]),async(req,res)=>{
     
@@ -19,12 +19,10 @@ if(!user){
     return res.render("not_admin"); 
 }
 if(passkey==user.passkey){
-    return res.render("allusers_info",{
-
-        urls:allUrls,
-        createdBy:req.user,
-
-    })}
+    req.session.isAdminVerified=true;
+    req.session.allUrls=allUrls;
+    req.session.createdBy=req.user;
+    return res.redirect("/allusersinfo")}
     else{
         res.render("invalid_passkey");
     }
@@ -34,12 +32,7 @@ router.get("/admin",restrictTo(["ADMIN"]),async(req,res)=>{
     
    
     const allUrls=await URL.find({});
-    return res.render("admin_verify",{
-
-        urls:allUrls,
-        createdBy:req.user,
-
-    })
+    return res.render("admin_verify")
 })
 
 
@@ -78,7 +71,19 @@ router.get("/dashboard",restrictTo(["NORMAL","ADMIN"]),(req,res)=>{
     }
 
 })
-
+router.get("/allusersinfo",restrictTo(["ADMIN"]),(req,res)=>{
+    if(!req.session.isAdminVerified){
+        return res.redirect("/admin");
+    }
+    
+    res.render("allusers_info",{
+        urls:req.session.allUrls,
+        createdBy:req.session.createdBy
+    })
+    req.session.isAdminVerified=false;
+    console.log("hello");
+    
+})
 router.get("/signup",(req,res)=>{
     res.render("signup");
 })

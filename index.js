@@ -7,7 +7,7 @@ const PORT=8001;
 const path=require("path");
 
 
-const staticRouter=require("./routes/staticRouter.js");
+const staticRouter=require("./routes/staticRoutes.js");
 const urlRoutes=require("./routes/url.js");
 const userRoute=require("./routes/user.js")
 const cookieparser=require("cookie-parser");
