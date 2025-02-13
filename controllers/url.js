@@ -35,6 +35,9 @@ async function handleGetUrl(req,res){
             }
         }
   })
+  if(!entry){
+    return res.redirect("/");
+  }
   console.log(entry.redirectUrl); 
    return res.redirect(entry.redirectUrl);
 }

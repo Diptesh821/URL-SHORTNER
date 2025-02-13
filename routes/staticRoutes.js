@@ -75,13 +75,12 @@ router.get("/allusersinfo",restrictTo(["ADMIN"]),(req,res)=>{
     if(!req.session.isAdminVerified){
         return res.redirect("/admin");
     }
-    
+    req.session.isAdminVerified=false; 
     res.render("allusers_info",{
         urls:req.session.allUrls,
         createdBy:req.session.createdBy
     })
-    req.session.isAdminVerified=false;
-    console.log("hello");
+   
     
 })
 router.get("/signup",(req,res)=>{
