@@ -9,12 +9,28 @@
 </head>
 
 <body>
+
+    <!-- User Info Section (Top Right Corner) -->
+    <div id="user-info">
+        <div class="dropdown">
+            <button class="dropbtn"><%= createdBy.name %> ⬇</button>
+            <div class="dropdown-content">
+                <p><strong>Email:</strong> <%= createdBy.email %></p>
+                <p><strong>Role:</strong> <%= createdBy.role %></p>
+             
+             <button class="logout-btn" id="logout">Logout</button>
+              
+            </div>
+        </div>
+    </div>
+
     <div id="container">
         <h1>URL SHORTENER</h1>
 
         <div id="generate-box">
             <% if (locals.id) { %>
-               URL Generated:  <a href="http://localhost:8001/url/<%= id %>">
+                URL Generated:
+                <a href="http://localhost:8001/url/<%= id %>">
                     http://localhost:8001/url/<%= id %>
                 </a>
             <% } %>
@@ -61,12 +77,10 @@
             <% } %>
         </div>
 
-        <div id="signout-box">
-            <button  id="signout-btn">Sign Out</button>
-           
-        </div>
+        
     </div>
-    <script src="/js/script.js" ></script>
+
+    <script src="/js/script.js"></script>
     <script src="/js/script1.js"></script>
 </body>
 

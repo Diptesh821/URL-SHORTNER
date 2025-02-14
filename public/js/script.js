@@ -1,4 +1,4 @@
-document.getElementById("signout-btn").addEventListener("click", async()=>{
+document.getElementById("logout").addEventListener("click", async()=>{
     try{
         const response=await fetch("/logout",{
             method:"POST",
