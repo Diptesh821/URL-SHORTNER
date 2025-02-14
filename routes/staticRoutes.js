@@ -1,4 +1,5 @@
 const express=require("express"); 
+const bcrypt=require("bcrypt");
 const router=express.Router();
 const URL=require("../models/url.js")
 const USER=require("../models/user.js");
@@ -9,15 +10,17 @@ router.post("/admin/urls",restrictTo(["ADMIN"]),async(req,res)=>{
     const allUrls=await URL.find({});
    const {email,password,passkey}=req.body;
    const user=await USER.findOne({
-    email,
-    password
+    email
 });
-
-
 if(!user){
-    
     return res.render("not_admin"); 
 }
+const ismatch=await bcrypt.compare(password,user.password);
+if(!ismatch){
+    return res.render("not_admin");
+}
+
+ 
 if(passkey==user.passkey){
     req.session.isAdminVerified=true;
     req.session.allUrls=allUrls;
