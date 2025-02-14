@@ -157,3 +157,70 @@ tr:nth-child(even) {
 #signout-box button:hover {
     background: #d32f2f;
 }
+/* User Info Section (Top Right Corner) */
+#user-info {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #0078ff;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left;
+}
+
+.dropdown-content p {
+    color: #333;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Logout Button */
+.logout-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    background: #e53935;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.logout-btn:hover {
+    background: #d32f2f;
+}
+
