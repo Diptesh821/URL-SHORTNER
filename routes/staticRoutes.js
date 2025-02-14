@@ -13,11 +13,17 @@ router.post("/admin/urls",restrictTo(["ADMIN"]),async(req,res)=>{
     email
 });
 if(!user){
-    return res.render("not_admin"); 
+    return res.send(`<script>
+        alert('You are not an admin');
+        window.location.href='/admin' </script>`);
+       
 }
 const ismatch=await bcrypt.compare(password,user.password);
 if(!ismatch){
-    return res.render("not_admin");
+    return res.send(`<script>
+        alert('Invalid email or password');
+        window.location.href='/admin' </script>`);
+       
 }
 
  
@@ -27,7 +33,10 @@ if(passkey==user.passkey){
     req.session.createdBy=req.user;
     return res.redirect("/allusersinfo")}
     else{
-        res.render("invalid_passkey");
+        return res.send(`<script>
+            alert('Invalid passkey or password');
+            window.location.href='/admin' </script>`);
+           
     }
 })
 
@@ -65,11 +74,13 @@ router.get("/dashboard",restrictTo(["NORMAL","ADMIN"]),(req,res)=>{
     if(req.user.role=='ADMIN'){
         res.render("admin_homepage",{
             id:req.session.shortid,
+            createdBy:req.session.createdBy,
         })
     }
     else{
         res.render("normal_homepage",{
             id:req.session.shortid,
+            createdBy:req.session.createdBy,
         })
     }
 

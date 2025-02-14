@@ -17,6 +17,7 @@ async function handleCreateShortId(req,res){
     
     
      req.session.shortid=shortUrl;
+     req.session.createdBy=req.user;
      console.log(shortUrl);
      console.log(req.session.shortid);
       
