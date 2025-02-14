@@ -5,6 +5,12 @@ const {setUser,getUser}=require("../servers/auth.js")
 async function handleNewUser(req,res) {
     console.log(req.body);
     const {name,email,password}=req.body;
+    const user=await USER.findOne({email});
+    if(user){
+        return res.send(`<script>
+            alert('User already exists. LOGIN');
+            window.location.href='/login' </script>`);
+    }
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if(!passwordRegex.test(password)){
         return res.status(400).json({ error: "Password must be at least 8 characters long, contain an uppercase letter, lowercase letter, number, and special character." });
