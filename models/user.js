@@ -27,7 +27,13 @@ const userSchema=mongoose.Schema({
         },
         
        
-    }
+    },
+    otp:{
+        type:String,
+    },
+    expiresAt:{
+        type:Number,
+    },
 
 },{
     timestamps:true
