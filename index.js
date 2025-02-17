@@ -1,15 +1,17 @@
 const express=require("express"); 
 const session = require("express-session");
-
+const path=require("path");
 
 const app=express();
 const PORT=8001;
-const path=require("path");
 
 
 const staticRouter=require("./routes/staticRoutes.js");
 const urlRoutes=require("./routes/url.js");
 const userRoute=require("./routes/user.js")
+const resetRoute=require("./routes/resetpass.js");
+const otpRoute=require("./routes/otp.js");
+
 const cookieparser=require("cookie-parser");
 const {checkForAuthentication,restrictTo}=require("./middlewares/auth.js");
 
@@ -20,6 +22,8 @@ app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
 
+
+//middlewares
 app.use(session({
     secret: "1508", // Change this to a secure random key
     resave: false,
@@ -41,6 +45,9 @@ app.use((req, res, next) => {
 app.use("/user",userRoute);
 app.use("/",staticRouter);
 app.use("/url",urlRoutes);
+app.use("/",resetRoute);
+app.use("/",otpRoute);
+
 
 
 app.listen(PORT,()=>{

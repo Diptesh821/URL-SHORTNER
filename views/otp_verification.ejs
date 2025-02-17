@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>OTP VERIFICATION</h2>
+            <form action="/user/otp-verify" method="POST">
+                <div class="input-group">
+                    <label for="OTP">OTP</label>
+                    <input type="number" id="OTP" name="otp" placeholder="Enter your otp" required>
+                </div>
+                <button type="submit" class="login-btn">Verify</button>
+            </form>
+        </div>
+    </div>
+    <script src="/js/script1.js"></script>
+</body>
+</html>

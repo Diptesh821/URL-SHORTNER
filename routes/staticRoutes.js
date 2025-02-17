@@ -5,9 +5,10 @@ const URL=require("../models/url.js")
 const USER=require("../models/user.js");
 const {restrictTo}=require("../middlewares/auth.js")
 
+
 router.post("/admin/urls",restrictTo(["ADMIN"]),async(req,res)=>{
     
-    const allUrls=await URL.find({});
+   const allUrls=await URL.find({});
    const {email,password,passkey}=req.body;
    const user=await USER.findOne({
     email
@@ -97,16 +98,30 @@ router.get("/allusersinfo",restrictTo(["ADMIN"]),(req,res)=>{
    
     
 })
+
+
+
+
 router.get("/signup",(req,res)=>{
+    req.session.isReset=false;
+    req.session.isUserVerified=false;
     res.render("signup");
 })
 router.get("/login",  (req,res)=>{
+    req.session.isReset=false;
+    req.session.isUserVerified=false;
     res.render("login");
 })
+
+
+
+
 router.post("/logout",(req,res)=>{
     const token=req.cookies.token;
     res.clearCookie("token");
     res.status(200).send({message:"logged out successfully"});
 
 })
+
+
 module.exports=router; 
