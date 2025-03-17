@@ -1,7 +1,6 @@
 const express=require("express");
 const router=express.Router(); 
 router.get("/otp_verification",(req,res)=>{
-    console.log("piku");
     if(req.cookies.token){
         return res.redirect("/");
     }

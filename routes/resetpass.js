@@ -34,9 +34,7 @@ router.post("/forgot",async(req,res)=>{
         subject:"OTP for password reset",
         text:`Your OTP for password reset is ${otp}`,
         html:`Your OTP is ${otp}`,
-    }
-    console.log("pikuss");
-    
+    }  
    await transporter.sendMail(mailOptions,(error)=>{
         if(error){
             return res.send(
