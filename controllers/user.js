@@ -1,9 +1,7 @@
 const USER=require("../models/user.js");
 const bcrypt=require("bcrypt");
-const nodemailer=require("nodemailer");
 const {transporter}=require("../nodemailer/transporter.js")
-// const { v4: uuidv4 } = require('uuid');
-const {setUser,getUser}=require("../servers/auth.js")
+const {setUser}=require("../servers/auth.js")
 async function handleNewUser(req,res) {
     console.log(req.body);
     const {name,email,password}=req.body;
@@ -48,13 +46,10 @@ async function handleNewUser(req,res) {
     return res.redirect("/");
 }
 async function handleLoginUser(req,res) {
-    console.log(req.body);
-   
     const {email,password}=req.body;
     const user=await USER.findOne({
         email
     });
-    console.log(user);
     if(!user){
         return res.send(`<script>
             alert('Invalid email or password');
@@ -87,7 +82,12 @@ async function handleLoginUser(req,res) {
     };
     transporter.sendMail(mailOptions,(error,info)=>{
         if(error){
-            return console.error('Error sending email:',error);
+            return res.send(
+                `<script>
+                alert("Unable to send email.");
+                window.location.href="/login";
+                </script>`
+            )
         }
         console.log("Email message send successfully",info.messageId);
     })
