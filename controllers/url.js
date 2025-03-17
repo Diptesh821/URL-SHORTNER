@@ -18,8 +18,6 @@ async function handleCreateShortId(req,res){
     
      req.session.shortid=shortUrl;
      req.session.createdBy=req.user;
-     console.log(shortUrl);
-     console.log(req.session.shortid);
       
     return res.redirect("/dashboard")}
    
@@ -39,7 +37,6 @@ async function handleGetUrl(req,res){
   if(!entry){
     return res.redirect("/");
   }
-  console.log(entry.redirectUrl); 
    return res.redirect(entry.redirectUrl);
 }
 async function  getTotalClicks(req,res) {

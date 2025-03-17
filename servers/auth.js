@@ -1,4 +1,5 @@
-const secret="piku&*2112";
+require("dotenv").config();
+const secret=process.env.JWT_SECRET;
 const jwt=require("jsonwebtoken");
 function setUser(user){
     const payload={

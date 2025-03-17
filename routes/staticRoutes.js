@@ -53,9 +53,6 @@ router.get("/admin",restrictTo(["ADMIN"]),async(req,res)=>{
 router.get("/",restrictTo(["NORMAL","ADMIN"]),async(req,res)=>{
     
     const allUrls=await URL.find({createdBy:req.user._id});
-    console.log(req.user);
-    console.log(allUrls);
-  console.log(req.user.role);
   if(req.user.role=="NORMAL"){
     return res.render("normal_homepage",{
 
